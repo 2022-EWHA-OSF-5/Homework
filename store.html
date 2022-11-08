@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar__logo">
+            <a class="logo" href="/">Orang</a>
+        </div>
+        <div class="navbar__menu">
+            <div>
+                <a href=”/list">리스트</a>
+            </div>
+            <div>
+                <a href=”/register_restaurant">맛집 등록</a>
+            </div>
+            <div>
+                <a href=”/register_menu">메뉴 등록</a>
+            </div>
+            <div>
+                <a href=”register_review">리뷰 등록</a>
+            </div>
+        </div>
+    </nav>
+    <div style="margin:100px 0  50px 50px;">
+    <h2>숨겨진 맛집을 등록해 벗들에게 공유해주세요!</h2>
+    <br>
+    <form>
+        <h4>식당 이름</h4>
+        <label for="fname"></label>
+        <input type="text" id="fname" name="fname"><br>
+        <br><h4>위치</h4>
+        <input type="radio" name="loc">정문
+        <input type="radio" name="loc">후문
+        <input type="radio" name="loc">신촌기차역
+        <input type="radio" name="loc">이대역
+        <br>
+        <br><h4>상세 주소</h4>
+        <label for="fname"></label>
+        <input type="text" id="fname" name="fname"><br>
+        <br><h4>전화번호</h4>
+        <label for="fname"></label>
+        <input type="text" id="fname" name="fname"><br>
+        <br><h4>카테고리</h4>
+        <select name="category">
+            <option value="">한식</option>
+            <option value="일식">일식</option>
+            <option value="중식">중식</option>
+            <option value="양식">양식</option>
+            <option value="분식">분식</option>
+            <option value="아시아 음식">아시아 음식</option>
+            <option value="카페">카페</option>
+        </select><br>
+        <br><h4>주차 가능 여부</h4>
+        <input type="radio" name="parking">무료
+        <input type="radio" name="parking">유료
+        <input type="radio" name="parking">불가
+        <br>
+        <br><h4>홈페이지</h4>
+        <label for="fname"></label>
+        <input type="text" id="fname" name="fname"><br>
+        <br><h4>영업 시간</h4>
+        <label for="fname"></label>
+        <input type="text" id="fname" name="fname"><br>
+        <br><h4>가격대</h4>
+        <select name="price">
+            <option value="">1만원 이하</option>
+            <option value="1">1만원~</option>
+            <option value="2">2만원~</option>
+            <option value="3">3만원~</option>
+            <option value="4">4만원~</option>
+            <option value="5">5만원~</option>
+        </select><br>
+        <br><h4>예약 가능 여부</h4>
+        <input type="radio" name="reservation">가능
+        <input type="radio" name="reservation">불가능
+        <br>
+        <br><h4>식당 대표 사진</h4>
+        <label for="input-file">
+        </label>
+        <input type="file" id="input-file">
+        <br>
+
+        <br><h6>부정확한 정보는 무통보 삭제될 수 있습니다.</h6><br>
+
+       <input type="submit"> 
+        
+    </form>
+    </div>
+<style>
+    * {
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+ }
+ .navbar {
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+    background-color: #ff3d00;
+ }
+ .logo {
+    font-weight: 600;
+    font-size: 25px;
+ }
+ .navbar__menu {
+    display: flex;
+    justify-content: space-around;
+    width: 70%;
+ }
+ a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 20px;
+ }
+</style>
+</body>
+</html>
