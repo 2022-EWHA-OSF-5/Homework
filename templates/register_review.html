@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>리뷰 등록 화면</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar__logo">
+            <a class="logo" href="/">Orang</a>
+        </div>
+        <div class="navbar__menu">
+            <div>
+                <a href="/register_restaurant">맛집 등록</a>
+            </div>
+            <div>
+                <a href="/register_menu">메뉴 등록</a>
+            </div>
+            <div>
+                <a href="/register_review">리뷰 등록</a>
+            </div>
+        </div>
+    </nav>
+    <div style="text-align:center; margin-top:100px;">
+        <h1>반서울</h1><br>
+        <form action="/submit_review_post" enctype="multipart/form-data" method="post">
+            <select id="star">
+                <!--별점-->
+                <option value="1">1점</option>
+                <option value="1">2점</option>
+                <option value="1">3점</option>
+                <option value="1">4점</option>
+                <option value="1">5점</option>
+            </select><br><br>
+            <input type="text" id="text"><br>
+            <!--리뷰 내용-->
+            <br>
+            <input type="file"><br><br><br>
+            <!--사진-->
+            <input type="submit" id="submit">
+        </form>
+
+    </div>
+    <style>
+
+    </style>
+</body>
+
+</html>
