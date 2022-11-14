@@ -8,7 +8,83 @@
     <title>Document</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+<style>
+*{
+    font-size: 14px;
+    margin:0;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
 
+}
+body{
+height: 400px;
+}
+form{
+    margin-top: 90px;
+    margin-left: 10px;
+}
+.title{
+    font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 24px;
+}
+.box{
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 30px;
+}
+span{
+    color:#FF3D00 ;
+}
+.gray{
+    width: 80%;
+    border: none;
+    background-color: #F4F4F4;
+    border-radius: 10px;
+    height: 30px;
+}
+#submit{
+    border: none;
+    background-color: #FF3D00 ;
+    border-radius: 5px;
+    color:white;
+    margin-top: 40px;
+
+    padding: 3px;
+}
+label {
+    margin-bottom: 10px;
+}
+.navbar {
+   position: fixed;
+   top: 0;
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+   width: 100%;
+   height: 70px;
+   background-color: #ff3d00;
+}
+.logo {
+   font-weight: 600;
+   font-size: 25px;
+}
+.navbar__menu {
+   display: flex;
+   justify-content: space-around;
+   width: 70%;
+}
+a {
+   text-decoration: none;
+   color: #fff;
+   font-size: 20px;
+}
+    </style>
 <body>
     <nav class="navbar">
         <div class="navbar__logo">
@@ -35,10 +111,8 @@
             <input type="text" id="name" name="name"><br>
             <br>
             <h4>위치</h4>
-            <input type="radio" name="location" value="정문">정문
-            <input type="radio" name="location" value="후문">후문
-            <input type="radio" name="location" value="신촌기차역">신촌기차역
-            <input type="radio" name="location" value="이대역">이대역
+            <label for="location"></label>
+            <input type="text" id="location" name="location">
             <br>
             <br>
             <h4>상세 주소</h4>
@@ -61,8 +135,7 @@
             </select><br>
             <br>
             <h4>주차 가능 여부</h4>
-            <input type="radio" name="park" value="Y">무료
-            <input type="radio" name="park" value="Y">유료
+            <input type="radio" name="park" value="Y">가능
             <input type="radio" name="park" value="N">불가
             <br>
             <br>
@@ -86,7 +159,7 @@
             <br>
             <h4>예약 가능 여부</h4>
             <input type="radio" name="reserve" value="Y">가능
-            <input type="radio" name="reserve" value="N">불가능
+            <input type="radio" name="reserve" value="N">불가
             <br>
             <br>
             <h4>식당 대표 사진</h4>
