@@ -36,3 +36,22 @@ class DBhandler:
         else:
             return False
     
+    def insert_menu(self, name, data, path):
+        menu_info = {
+            "menu_name": data['menu_name'],
+            "menu_price": data['menu_price'],
+            "img": path,
+        }
+        print(menu_info)
+        self.db.child("menu").child(name).set(menu_info) 
+        return True
+
+    def insert_review(self, name, data):
+        review_info = {
+            "star": data['star'],
+            "text": data['text'],
+        }
+        self.db.child("review").child(name).set(review_info) 
+        return True
+
+    
