@@ -1,6 +1,10 @@
 from flask import Flask, render_template, request
+from database import DBhandler
 import sys
+
 application = Flask(__name__)
+DB = DBhandler()
+
 
 @application.route("/") 
 def home():
@@ -22,13 +26,17 @@ def register_review():
 @application.route("/submit_restaurant_post", methods=['POST']) 
 def submit_restaurant_post():
     if request.files["file"] :
-        print('abc')
         image_file=request.files["file"] 
         image_path = "static/image/{}".format(image_file.filename)
         image_file.save(image_path) 
         print(image_path)
     data=request.form
-    return render_template("result.html", data=data, path=image_path)
+
+    if DB.insert_restaurant(data['name'], data, image_path):
+        return render_template("result.html", data=data, path=image_path)
+    else:
+        return "Restaurant name already exist!"
+
 
 @application.route("/submit_menu_post", methods=['POST']) 
 def submit_menu_post():
