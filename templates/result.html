@@ -86,6 +86,13 @@
                         </p>
                 </div>
             </div>
+            <form method="post" action="/register_menu">
+                <input type="hidden" name="restaurant_name" value="{{data.name}}" />
+                <div>
+                  <p>It's time to register the representative menu in {{data.name}}</p>
+                  <button type="submit" name="menu">Register Menu</button><br /><br />
+                </div>
+            </form>
         </main>
     </body>
 </html>

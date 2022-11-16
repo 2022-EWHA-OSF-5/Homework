@@ -21,6 +21,11 @@ def register_menu():
 def register_review():
     return render_template("register_review.html")
 
+@application.route("/register_menu", methods=['POST']) 
+def reg_menu():
+    data=request.form 
+    print(data)
+    return render_template("register_menu.html", data=data)
 
 @application.route("/submit_restaurant_post", methods=['POST']) 
 def submit_restaurant_post():
