@@ -1,98 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="{{ url_for('static', filename='result_style.css') }}">
-		<title>맛집 정보</title>
-	</head>
-	<body>
-        <nav class="navbar">
-            <div class="navbar__logo">
-                <a class="logo" href="/">Orang</a>
-            </div>
-            <div class="navbar__menu">
-                <div>
-                    <a href="/register_restaurant">맛집 등록</a>
-                </div>
-                <div>
-                    <a href="/register_menu">메뉴 등록</a>
-                </div>
-                <div>
-                    <a href="/register_review">리뷰 등록</a>
-                </div>
-            </div>
-        </nav>
-        <main>
-            <div>
-                <div class="top">
-                    <img src= {{path}} alt="대표사진" width="300"/>
-                    <div>
-                        <div class="field">
-                            <div class="title orange">맛집 이름</div>
-                            <p>{{data.name}}</p>
-                        </div>
-                        <div class="field">
-                            <div class="title">위치</div>
-                            <p>{{data.location}}</p>
-                        </div>
-                        <div class="field">
-                            <div class="title">상세 주소</div>
-                            <p>{{data.addr}}</p>
-                        </div>
-                        <div class="field">
-                            <div class="title">전화번호</div>
-                            <p>{{data.tel}}</p>
-                        </div>
-                        <div class="field">
-                            <div class="title">카테고리</div>
-                            <p>{{data.category}}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="field">
-                    <div class="title">주차 가능 여부</div>
-                    <p>
-                    {% if data['park'] == "Y" %}
-                    가능
-                    {% endif %}
-                    {% if data['park'] == "N" %}
-                    불가
-                    {% endif %}
-                    </p>
-                </div>
-                <div class="field">
-                    <div class="title">홈페이지</div>
-                    <p>{{data.website}}</p>
-                </div>
-                <div class="field">
-                    <div class="title">영업 시간</div>
-                    <p>{{data.time}}</p>
-                </div>
-                <div class="field">
-                    <div class="title">가격대</div>
-                    <p>{{data.price}}</p>
-                </div>
-                <div class="field">
-                    <div class="title">예약 가능 여부</div>
-                    <p>
-                        {% if data['reserve'] == "Y" %}
-                        가능
-                        {% endif %}
-                        {% if data['reserve'] == "N" %}
-                        불가
-                        {% endif %}
-                        </p>
-                </div>
-            </div>
-            <form method="post" action="/register_menu">
-                <input type="hidden" name="restaurant_name" value="{{data.name}}" />
-                <div>
-                  <p>It's time to register the representative menu in {{data.name}}</p>
-                  <button type="submit" name="menu">Register Menu</button><br /><br />
-                </div>
-            </form>
-        </main>
-    </body>
-</html>
+{% extends "base.html" %} {% block header %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='result_style.css') }}"
+/>
+<title>맛집 정보</title>
+{% endblock header %} {% block section %}
+<main>
+  <div>
+    <div class="top">
+      <img src="{{path}}" alt="대표사진" width="300" />
+      <div>
+        <div class="field">
+          <div class="title orange">맛집 이름</div>
+          <p>{{data.name}}</p>
+        </div>
+        <div class="field">
+          <div class="title">위치</div>
+          <p>{{data.location}}</p>
+        </div>
+        <div class="field">
+          <div class="title">상세 주소</div>
+          <p>{{data.addr}}</p>
+        </div>
+        <div class="field">
+          <div class="title">전화번호</div>
+          <p>{{data.tel}}</p>
+        </div>
+        <div class="field">
+          <div class="title">카테고리</div>
+          <p>{{data.category}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <div class="title">주차 가능 여부</div>
+      <p>
+        {% if data['park'] == "Y" %} 가능 {% endif %} {% if data['park'] == "N"
+        %} 불가 {% endif %}
+      </p>
+    </div>
+    <div class="field">
+      <div class="title">홈페이지</div>
+      <p>{{data.website}}</p>
+    </div>
+    <div class="field">
+      <div class="title">영업 시간</div>
+      <p>{{data.time}}</p>
+    </div>
+    <div class="field">
+      <div class="title">가격대</div>
+      <p>{{data.price}}</p>
+    </div>
+    <div class="field">
+      <div class="title">예약 가능 여부</div>
+      <p>
+        {% if data['reserve'] == "Y" %} 가능 {% endif %} {% if data['reserve']
+        == "N" %} 불가 {% endif %}
+      </p>
+    </div>
+  </div>
+  <form method="post" action="/register_menu">
+    <input type="hidden" name="restaurant_name" value="{{data.name}}" />
+    <div>
+      <p>It's time to register the representative menu in {{data.name}}</p>
+      <button type="submit" name="menu">Register Menu</button><br /><br />
+    </div>
+  </form>
+</main>
+{% endblock section %}

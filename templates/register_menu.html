@@ -1,53 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>메뉴 등록하기</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
+{% block header %} 
+<title>메뉴 등록하기</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+{% endblock header %}
 
-<body>
-    <nav class="navbar">
-        <div class="navbar__logo">
-            <a class="logo" href="/">Orang</a>
+{% block section %} 
+<form action="/submit_menu_post" enctype="multipart/form-data" method="post">
+    <div>
+        <h6>식당 이름 : {{data.restaurant_name}}</h6>
+        <h1 class="title">메뉴 등록하기</h1>
+        <div class="box">
+            <label for="menu_name" id="menu_name">메뉴 이름 <span>*</span></label>
+            <input type="text" name="menu_name" id="menu_name" class="gray" required />
         </div>
-        <div class="navbar__menu">
-            <div>
-                <a href="/register_restaurant">맛집 등록</a>
-            </div>
-            <div>
-                <a href="/register_menu">메뉴 등록</a>
-            </div>
-            <div>
-                <a href="/register_review">리뷰 등록</a>
-            </div>
-        </div>
-    </nav>
 
-    <form action="/submit_menu_post" enctype="multipart/form-data" method="post">
+        <div class="box">
+            <label for="menu_price">가격 <span>*</span> </label>
+            <input type="text" name="menu_price" id="menu_price" class="gray" required />
+        </div>
+
+        <div class="box">
+            <label for="file">메뉴 사진 <span>*</span></label>
+            <input type="file" name="file" id="file_btn" />
+        </div>
+
         <div>
-            <h6>식당 이름 : {{data.restaurant_name}}</h6>
-            <h1 class="title">메뉴 등록하기</h1>
-            <div class="box">
-                <label for="menu_name" id="menu_name">메뉴 이름 <span>*</span></label>
-                <input type="text" name="menu_name" id="menu_name" class="gray" required />
-            </div>
-
-            <div class="box">
-                <label for="menu_price">가격 <span>*</span> </label>
-                <input type="text" name="menu_price" id="menu_price" class="gray" required />
-            </div>
-
-            <div class="box">
-                <label for="file">메뉴 사진 <span>*</span></label>
-                <input type="file" name="file" id="file_btn" />
-            </div>
-
-            <div>
-            <input type="submit" value="등록하기!" id="submit" />
-    </form>
-</body>
-</html>
+        <input type="submit" value="등록하기!" id="submit" />
+</form>
+{% endblock section %}

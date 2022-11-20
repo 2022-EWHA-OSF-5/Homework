@@ -1,177 +1,156 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
+{% extends "base.html" %} {% block header %}
+<title>맛집 등록하기</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 <style>
-*{
+  * {
     font-size: 14px;
-    margin:0;
+    margin: 0;
     top: 0;
     left: 0;
     margin: 0;
     padding: 0;
-
-}
-body{
-height: 400px;
-}
-form{
+  }
+  body {
+    height: 400px;
+  }
+  form {
     margin-top: 90px;
     margin-left: 10px;
-}
-.title{
-    font-family: 'Inter';
-font-style: normal;
-font-weight: 400;
-font-size: 20px;
-line-height: 24px;
-}
-.box{
+  }
+  .title {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+  }
+  .box {
     display: flex;
     flex-direction: column;
 
     margin-top: 30px;
-}
-span{
-    color:#FF3D00 ;
-}
-.gray{
+  }
+  span {
+    color: #ff3d00;
+  }
+  .gray {
     width: 80%;
     border: none;
-    background-color: #F4F4F4;
+    background-color: #f4f4f4;
     border-radius: 10px;
     height: 30px;
-}
-#submit{
+  }
+  #submit {
     border: none;
-    background-color: #FF3D00 ;
+    background-color: #ff3d00;
     border-radius: 5px;
-    color:white;
+    color: white;
     margin-top: 40px;
 
     padding: 3px;
-}
-label {
+  }
+  label {
     margin-bottom: 10px;
-}
-.navbar {
-   position: fixed;
-   top: 0;
-   display: flex;
-   justify-content: space-around;
-   align-items: center;
-   width: 100%;
-   height: 70px;
-   background-color: #ff3d00;
-}
-.logo {
-   font-weight: 600;
-   font-size: 25px;
-}
-.navbar__menu {
-   display: flex;
-   justify-content: space-around;
-   width: 70%;
-}
-a {
-   text-decoration: none;
-   color: #fff;
-   font-size: 20px;
-}
-    </style>
-<body>
-    <nav class="navbar">
-        <div class="navbar__logo">
-            <a class="logo" href="/">Orang</a>
-        </div>
-        <div class="navbar__menu">
-            <div>
-                <a href="/register_restaurant">맛집 등록</a>
-            </div>
-            <div>
-                <a href="/register_menu">메뉴 등록</a>
-            </div>
-            <div>
-                <a href="/register_review">리뷰 등록</a>
-            </div>
-        </div>
-    </nav>
-    <div style="margin-top:100px;">
-        <h2>숨겨진 맛집을 등록해 벗들에게 공유해주세요!</h2>
-        <br>
-        <form action="/submit_restaurant_post" enctype="multipart/form-data" method="post">
-            <h4>식당 이름</h4>
-            <label for="name"></label>
-            <input type="text" id="name" name="name"><br>
-            <br>
-            <h4>위치</h4>
-            <label for="location"></label>
-            <input type="text" id="location" name="location">
-            <br>
-            <br>
-            <h4>상세 주소</h4>
-            <label for="addr"></label>
-            <input type="text" id="addr" name="addr"><br>
-            <br>
-            <h4>전화번호</h4>
-            <label for="tel"></label>
-            <input type="text" id="tel" name="tel"><br>
-            <br>
-            <h4>카테고리</h4>
-            <select name="category">
-                <option value="">한식</option>
-                <option value="일식">일식</option>
-                <option value="중식">중식</option>
-                <option value="양식">양식</option>
-                <option value="분식">분식</option>
-                <option value="아시아 음식">아시아 음식</option>
-                <option value="카페">카페</option>
-            </select><br>
-            <br>
-            <h4>주차 가능 여부</h4>
-            <input type="radio" name="park" value="Y">가능
-            <input type="radio" name="park" value="N">불가
-            <br>
-            <br>
-            <h4>홈페이지</h4>
-            <label for="website"></label>
-            <input type="text" id="website" name="website"><br>
-            <br>
-            <h4>영업 시간</h4>
-            <label for="time"></label>
-            <input type="text" id="time" name="time"><br>
-            <br>
-            <h4>가격대</h4>
-            <select name="price">
-                <option value="0">1만원 이하</option>
-                <option value="1">1만원~</option>
-                <option value="2">2만원~</option>
-                <option value="3">3만원~</option>
-                <option value="4">4만원~</option>
-                <option value="5">5만원~</option>
-            </select><br>
-            <br>
-            <h4>예약 가능 여부</h4>
-            <input type="radio" name="reserve" value="Y">가능
-            <input type="radio" name="reserve" value="N">불가
-            <br>
-            <br>
-            <h4>식당 대표 사진</h4>
-            <label for="img"></label>
-            <input type="file" name="file">
-            <br>
-            <br>
-            <h6>부정확한 정보는 무통보 삭제될 수 있습니다.</h6><br>
-            <input type="submit">
+  }
+  .navbar {
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+    background-color: #ff3d00;
+  }
+  .logo {
+    font-weight: 600;
+    font-size: 25px;
+  }
+  .navbar__menu {
+    display: flex;
+    justify-content: space-around;
+    width: 70%;
+  }
+  a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 20px;
+  }
+</style>
 
-        </form>
-    </div>
-</body>
-
-</html>
+{% endblock header %} {% block section %}
+<div style="margin-top: 100px">
+  <h2>숨겨진 맛집을 등록해 벗들에게 공유해주세요!</h2>
+  <br />
+  <form
+    action="/submit_restaurant_post"
+    enctype="multipart/form-data"
+    method="post"
+  >
+    <h4>식당 이름</h4>
+    <label for="name"></label>
+    <input type="text" id="name" name="name" /><br />
+    <br />
+    <h4>위치</h4>
+    <label for="location"></label>
+    <input type="text" id="location" name="location" />
+    <br />
+    <br />
+    <h4>상세 주소</h4>
+    <label for="addr"></label>
+    <input type="text" id="addr" name="addr" /><br />
+    <br />
+    <h4>전화번호</h4>
+    <label for="tel"></label>
+    <input type="text" id="tel" name="tel" /><br />
+    <br />
+    <h4>카테고리</h4>
+    <select name="category">
+      <option value="">한식</option>
+      <option value="일식">일식</option>
+      <option value="중식">중식</option>
+      <option value="양식">양식</option>
+      <option value="분식">분식</option>
+      <option value="아시아 음식">아시아 음식</option>
+      <option value="카페">카페</option></select
+    ><br />
+    <br />
+    <h4>주차 가능 여부</h4>
+    <input type="radio" name="park" value="Y" />가능
+    <input type="radio" name="park" value="N" />불가
+    <br />
+    <br />
+    <h4>홈페이지</h4>
+    <label for="website"></label>
+    <input type="text" id="website" name="website" /><br />
+    <br />
+    <h4>영업 시간</h4>
+    <label for="time"></label>
+    <input type="text" id="time" name="time" /><br />
+    <br />
+    <h4>가격대</h4>
+    <select name="price">
+      <option value="0">1만원 이하</option>
+      <option value="1">1만원~</option>
+      <option value="2">2만원~</option>
+      <option value="3">3만원~</option>
+      <option value="4">4만원~</option>
+      <option value="5">5만원~</option></select
+    ><br />
+    <br />
+    <h4>예약 가능 여부</h4>
+    <input type="radio" name="reserve" value="Y" />가능
+    <input type="radio" name="reserve" value="N" />불가
+    <br />
+    <br />
+    <h4>식당 대표 사진</h4>
+    <label for="img"></label>
+    <input type="file" name="file" />
+    <br />
+    <br />
+    <h6>부정확한 정보는 무통보 삭제될 수 있습니다.</h6>
+    <br />
+    <input type="submit" />
+  </form>
+</div>
+{% endblock section %}
