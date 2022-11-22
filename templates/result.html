@@ -66,5 +66,13 @@
       <button type="submit" name="menu">Register Menu</button><br /><br />
     </div>
   </form>
+
+  <form method="post" action="/register_review">
+    <input type="hidden" name="res_name" value="{{data.name}}" />
+    <div>
+      <p>It's time to register the representative menu in {{data.name}}</p>
+      <button type="submit" name="menu">리뷰 등록하기</button><br /><br />
+    </div>
+  </form>
 </main>
 {% endblock section %}

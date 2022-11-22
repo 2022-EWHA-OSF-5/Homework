@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+<!--  -->
+
+{% block header %} {% endblock header %}
+
+<!--  -->
+{% block section %}
+
+<p>restaurant name is <b>{{data.name}}</b> and address is {{data.addr}}</p>
+<p>restaurant tel. is {{data.tel}} and category is {{data.category}}</p>
+<p>
+  Parking is {% if data['park'] == "Y" %} available {% endif %} {% if
+  data['park'] == "N" %} NOT available {% endif %} and Open/Close time is
+  {{data.time}}
+</p>
+<img src="/{{data.img}}" />
+
+<form method="post" action="/list_foods">
+  <input type="hidden" name="restaurant_name" value="{{data.name}}" />
+  <div>
+    <a href="/list_foods/{{data.name}}/" color="black">
+      <img src="/static/image/menu_button.png" width="150" height="70"
+    /></a>
+
+    <br /><br />
+  </div>
+</form>
+{% endblock section %}/>

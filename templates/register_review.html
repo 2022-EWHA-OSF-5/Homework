@@ -4,13 +4,13 @@
 {% endblock header %} {% block section %}
 
 <div style="text-align: center; margin-top: 100px">
-  <h1>반서울</h1>
   <br />
   <form
     action="/submit_review_post"
     enctype="multipart/form-data"
     method="post"
   >
+    <h6>식당 이름 : {{data.res_name}}</h6>
     <select id="star" name="star">
       <!--별점-->
       <option value="1">1점</option>
