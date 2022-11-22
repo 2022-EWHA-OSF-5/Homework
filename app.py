@@ -18,6 +18,7 @@ def list_restaurants():
     data = DB.get_restaurants() #read the table
     tot_count = len(data)
     data = dict(list(data.items())[start_idx:end_idx])
+    print('뿌려짐', data)
     return render_template(
         "list.html",
         datas=data.items(),
@@ -34,7 +35,6 @@ def DynamicUrl(varible_name):
 def view_restaurant_detail(name):
     data = DB.get_restaurant_byname(str(name))
     avg_rate = DB.get_avgrate_byname(str(name))
-    print("####data:",data)
     return render_template("detail.html", data=data, avg_rate=avg_rate)
 
 @application.route("/list_foods/<res_name>/") # 식당 이름 기반 동적 라우팅
@@ -47,6 +47,18 @@ def view_foods(res_name):
         datas=data,
         total=tot_count)
 
+@application.route("/list_reviews/<res_name>/") # 특정 식당의 리뷰 보기 
+def view_reviews(res_name):
+    data = DB.get_review_byname(str(res_name))
+    print('뿡뿡', data)
+    tot_count = len(data)
+    print('토탈', tot_count)
+    return render_template(
+        "review_list.html",
+        datas=data,
+        total=tot_count)
+    #get_avgrate_byname 평균 별점?? 
+
 @application.route("/register_restaurant") 
 def register_restaurant():
     return render_template("register_restaurant.html")
@@ -58,7 +70,6 @@ def register_menu():
 @application.route("/register_menu", methods=['POST']) 
 def reg_menu():
     data=request.form 
-    print(data)
     return render_template("register_menu.html", data=data)
 
 @application.route("/register_review") 
@@ -78,7 +89,6 @@ def submit_restaurant_post():
         image_file=request.files["file"] 
         image_path = "static/image/{}".format(image_file.filename)
         image_file.save(image_path) 
-        print(image_path)
     else:
         image_path=""
     data=request.form
@@ -95,7 +105,6 @@ def submit_menu_post():
         image_file=request.files["file"] 
         image_path = "static/image/{}".format(image_file.filename)
         image_file.save(image_path) 
-        print(image_path)
     else:
         image_path=""
     data=request.form
@@ -107,7 +116,6 @@ def submit_menu_post():
 @application.route("/submit_review_post", methods=['POST']) 
 def submit_review_post():
     data=request.form
-    print(data)
     DB.insert_review(data['res_name'], data)
 
     return render_template("index.html", data=data)

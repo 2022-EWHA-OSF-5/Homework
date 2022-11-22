@@ -47,6 +47,7 @@ class DBhandler:
     
     def insert_menu(self, name, data, path):
         menu_info = {
+            "res_name" : data["res_name"],
             "menu_name": data['menu_name'],
             "menu_price": data['menu_price'],
             "img": path,
@@ -81,13 +82,22 @@ class DBhandler:
             if value['res_name'] == name:
                 target_value.append(value)
                 return target_value
+    
+    def get_review_byname(self, name):
+        reviews = self.db.child("review").get()
+        target_value=[]
+        for res in reviews.each():
+            value = res.val()
+            if value['res_name'] == name:
+                target_value.append(value)
+                return target_value
 
     def get_avgrate_byname(self,name):
         reviews = self.db.child("review").get()
         rates=[]
         for res in reviews.each():
             value = res.val()
-            print('뭐야', value)
+            print('평균 평점', value)
             if value['res_name'] == name:
-                rates.append(float(value['rate']))
+                rates.append(float(value['star']))
                 return sum(rates)/len(rates)

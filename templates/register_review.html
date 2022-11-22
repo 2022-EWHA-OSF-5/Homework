@@ -10,7 +10,13 @@
     enctype="multipart/form-data"
     method="post"
   >
-    <h6>식당 이름 : {{data.res_name}}</h6>
+    <input
+      type="text"
+      name="res_name"
+      id="text"
+      value="{{data.res_name}}"
+    /><br />
+
     <select id="star" name="star">
       <!--별점-->
       <option value="1">1점</option>

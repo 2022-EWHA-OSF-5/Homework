@@ -52,7 +52,7 @@
 {% for data in datas %}
 <div id="list-box">
   <p>맛집이름: {{data[1].name}}</p>
-  <a href="/view_detail/{{data[1].name}}/"><img src="{{data[1].img}}" /></a>
+  <a href="/view_detail/{{data[1].name}}"><img src="{{data[1].img}}" /></a>
 </div>
 {% endfor %}
 <!-- 페이지네이션을 위한 코드 시작 -->

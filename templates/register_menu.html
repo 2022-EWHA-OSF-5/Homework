@@ -8,7 +8,8 @@
 {% block section %} 
 <form action="/submit_menu_post" enctype="multipart/form-data" method="post">
     <div>
-        <h6>식당 이름 : {{data.restaurant_name}}</h6>
+        <h6 >식당 이름 : {{data.restaurant_name}}</h6>
+        <input name="res_name" value={{data.restaurant_name}}  type="hidden"/>
         <h1 class="title">메뉴 등록하기</h1>
         <div class="box">
             <label for="menu_name" id="menu_name">메뉴 이름 <span>*</span></label>
