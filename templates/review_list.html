@@ -1,26 +1,67 @@
 {% extends "base.html" %} {% block header %}
 
 <style>
-  #p {
-    margin-top: 40px;
-  }
+	#p {
+		margin-top: 100px;
+		font-size: 20px;
+		font-weight: 600;
+		text-align: center;
+	}
+	#orange {
+		color: #ff3d00;
+	}
+	.review-wrapper {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		margin-top: 30px;
+	}
+	.review-container {
+		margin: 20px 0;
+		border: 3px solid #ff3d00;
+		padding: 20px;
+		border-radius: 10px;
+	}
+	#field-name {
+		font-size: 18px;
+		font-weight: 600;
+	}
+	.star {
+		color: #fab93b;
+		font-size: 20px;
+		text-decoration: underline;
+	}
+	.text {
+		font-weight: 500;
+	}
 </style>
 
 {% endblock header %}
 
 <!--  -->
 {% block section %}
-
 <!-- // -->
 
 {% if total > 0 %}
-<p id="p">리뷰 리스트 -- 현재까지 {{total}}개 등록됨</p>
+<p id="p">
+	리뷰 리스트 : 현재까지 총 <span id="orange">{{total}}개</span> 등록됨
+</p>
 
-{% for data in datas %}
-<div>
-  <p>별점: {{data.star}}</p>
-  <p>후기 : {{data.text}}</p>
+<div class="review-wrapper">
+	{% for data in datas %}
+	<div class="review-container">
+		<p id="field-name">별점: <span class="star">{{data.star}}</span></p>
+		<p id="field-name">
+			후기 :
+			<span class="text">{{data.text}}</span>
+		</p>
+	</div>
+	{% endfor %}
 </div>
-{% endfor %} {% else %}
-<p>등록된 리뷰가 없습니다.</p>
+
+{% else %}
+<p id="p">등록된 리뷰가 없습니다.</p>
+
 {% endif %} {% endblock section %}

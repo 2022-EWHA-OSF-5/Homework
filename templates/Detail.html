@@ -1,32 +1,105 @@
 {% extends "base.html" %}
 <!--  -->
 
-{% block header %} {% endblock header %}
+{% block header %}
+<link
+	rel="stylesheet"
+	href="{{ url_for('static', filename='result_style.css') }}"
+/>
+<title>{{data.name}}</title>
+<style>
+	.img-rect {
+		width: 400px;
+		height: 400px;
+		border-radius: 10px;
+		overflow: hidden;
+		margin-right: 40px;
+	}
+	.img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		-webkit-user-drag: none;
+	}
+	.body {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-top: 30px;
+	}
+	.form-wrapper {
+		display: flex;
+		justify-content: center;
+		margin-top: 70px;
+	}
+	.form-wrapper div {
+		display: flex;
+	}
+	.form-wrapper a {
+		border: 1px solid gray;
+		border-radius: 10px;
+		margin: 0 20px;
+	}
+	.page {
+		color: #ff3d00;
+		font-weight: 600;
+		font-size: 20px;
+		margin: 5px 30px;
+	}
+</style>
+
+{% endblock header %}
 
 <!--  -->
 {% block section %}
 
-<p>restaurant name is <b>{{data.name}}</b> and address is {{data.addr}}</p>
-<p>restaurant tel. is {{data.tel}} and category is {{data.category}}</p>
-<p>
-  Parking is {% if data['park'] == "Y" %} available {% endif %} {% if
-  data['park'] == "N" %} NOT available {% endif %} and Open/Close time is
-  {{data.time}}
-</p>
-<img src="/{{data.img}}" />
+<main>
+	<div class="body">
+		<div class="top">
+			<div class="img-rect">
+				<img class="img" src="/{{data.img}}" />
+			</div>
+			<div>
+				<div class="field">
+					<div class="title orange">맛집 이름</div>
+					<p>{{data.name}}</p>
+				</div>
+				<div class="field">
+					<div class="title">상세 주소</div>
+					<p>{{data.addr}}</p>
+				</div>
+				<div class="field">
+					<div class="title">전화번호</div>
+					<p>{{data.tel}}</p>
+				</div>
+				<div class="field">
+					<div class="title">카테고리</div>
+					<p>{{data.category}}</p>
+				</div>
+				<div class="field">
+					<div class="title">주차 가능 여부</div>
+					<p>
+						{% if data['park'] == "Y" %} 가능 {% endif %} {% if data['park'] ==
+						"N" %} 불가 {% endif %}
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
 
-<form method="post" action="/list_foods">
-  <input type="hidden" name="restaurant_name" value="{{data.name}}" />
-  <div>
-    <a href="/list_foods/{{data.name}}/" color="black">
-      <img src="/static/image/menu_button.png" width="150" height="70"
-    /></a>
+<div class="form-wrapper">
+	<form method="post" action="/list_foods">
+		<input type="hidden" name="restaurant_name" value="{{data.name}}" />
+		<div>
+			<a href="/list_foods/{{data.name}}/" color="black">
+				<p class="page">메뉴 등록하기</p></a
+			>
+			<a href="/list_reviews/{{data.name}}/" color="black">
+				<p class="page">리뷰 등록하기</p></a
+			>
+		</div>
+	</form>
+</div>
 
-    <br /><br />
-
-    <a href="/list_reviews/{{data.name}}/" color="black">
-      <img src="/static/image/menu_button.png" width="150" height="70"
-    /></a>
-  </div>
-</form>
-{% endblock section %}/>
+{% endblock section %}

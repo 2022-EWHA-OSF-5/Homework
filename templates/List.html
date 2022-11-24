@@ -5,70 +5,113 @@
 <title>리스트 화면</title>
 
 <style>
-  .page-nation li {
-    list-style: none;
-  }
-  .page-wrap {
-    text-align: center;
-    font-size: 0;
-  }
-  .page-nation {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-  }
-
-  .page-nation a {
-    display: block;
-    margin: 0 3px;
-    float: left;
-    border: 1px solid #e6e6e6;
-    width: 28px;
-    height: 28px;
-    line-height: 28px;
-    text-align: center;
-    background-color: #fff;
-    font-size: 13px;
-    color: black;
-    text-decoration: none;
-    font-weight: bold;
-  }
-
-  #plz {
-    margin-top: 50px;
-  }
-  #list-box {
-    border: 1px solid red;
-
-    margin: 10px;
-  }
+	#p {
+		margin-top: 100px;
+		font-size: 20px;
+		font-weight: 600;
+		text-align: center;
+	}
+	#orange {
+		color: #ff3d00;
+	}
+	.list-wrapper {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		margin-top: 30px;
+	}
+	.list-container {
+		margin: 20px 0;
+		border: 3px solid #ff3d00;
+		padding: 20px;
+		border-radius: 10px;
+	}
+	#field-name {
+		font-size: 18px;
+		font-weight: 600;
+	}
+	.name {
+		color: #ff3d00;
+		font-size: 25px;
+	}
+	.img-rect {
+		width: 800px;
+		height: 450px;
+		border-radius: 10px;
+		overflow: hidden;
+		margin-top: 20px;
+	}
+	.img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		-webkit-user-drag: none;
+	}
+	.page-wrap {
+		margin-bottom: 20px;
+	}
+	.page-nation li {
+		list-style: none;
+	}
+	.page-nation {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-top: 20px;
+	}
+	.page-nation a {
+		display: block;
+		margin: 0 3px;
+		float: left;
+		border: 1px solid #e6e6e6;
+		width: 28px;
+		height: 28px;
+		line-height: 28px;
+		text-align: center;
+		background-color: #fff;
+		font-size: 13px;
+		color: black;
+		text-decoration: none;
+		font-weight: bold;
+	}
 </style>
-{% endblock header %}
 
+{% endblock header %}
 <!--  -->
 {% block section %} {% if total > 0 %}
-<p id="plz">맛집 리스트 -- 현재까지 {{total}}개 등록됨</p>
-{% for data in datas %}
-<div id="list-box">
-  <p>맛집이름: {{data[1].name}}</p>
-  <a href="/view_detail/{{data[1].name}}"><img src="{{data[1].img}}" /></a>
+<p id="p">
+	맛집 리스트 : 현재까지 총 <span id="orange">{{total}}개</span> 등록됨
+</p>
+
+<div class="list-wrapper">
+	{% for data in datas %}
+	<div class="list-container">
+		<p id="field-name">맛집이름: <span class="name">{{data[1].name}}</span></p>
+		<a href="/view_detail/{{data[1].name}}"
+			><div class="img-rect">
+				<img class="img" src="{{data[1].img}}" /></div
+		></a>
+	</div>
+	{% endfor %}
 </div>
-{% endfor %}
+
 <!-- 페이지네이션을 위한 코드 시작 -->
 <div class="page-wrap">
-  <div class="page-nation">
-    <ul>
-      <li>
-        {% for i in range(page_count)%}
-        <a href="{{url_for('list_restaurants', page=i)}}" color="black"
-          >{{i}}</a
-        >
-        {% endfor %}
-      </li>
-    </ul>
-  </div>
+	<div class="page-nation">
+		<ul>
+			<li>
+				{% for i in range(page_count)%}
+				<a href="{{url_for('list_restaurants', page=i)}}" color="black"
+					>{{i}}</a
+				>
+				{% endfor %}
+			</li>
+		</ul>
+	</div>
 </div>
+
 {% else %}
-<p>등록된 맛집이 없습니다.</p>
+<p id="p">등록된 맛집이 없습니다.</p>
 {% endif %} {% endblock section %}
