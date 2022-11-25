@@ -10,12 +10,8 @@
     enctype="multipart/form-data"
     method="post"
   >
-    <input
-      type="text"
-      name="res_name"
-      id="text"
-      value="{{data.res_name}}"
-    /><br />
+    <p>{{data.res_name}} 의 리뷰 남기기</p>
+    <input type="hidden" name="res_name" value="{{data.res_name}}" /><br />
 
     <select id="star" name="star">
       <!--별점-->

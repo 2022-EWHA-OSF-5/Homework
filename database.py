@@ -85,9 +85,12 @@ class DBhandler:
     
     def get_review_byname(self, name):
         reviews = self.db.child("review").get()
+       
         target_value=[]
         for res in reviews.each():
             value = res.val()
+            print('뽑아온 리뷰 객체들', value)
+
             if value['res_name'] == name:
                 target_value.append(value)
                 return target_value

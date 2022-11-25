@@ -16,7 +16,10 @@ def list_restaurants():
     start_idx=limit*page
     end_idx=limit*(page+1)
     data = DB.get_restaurants() #read the table
-    tot_count = len(data)
+    if data is None:
+        tot_count = 0
+    else:
+        tot_count = len(data)
     data = dict(list(data.items())[start_idx:end_idx])
     print('뿌려짐', data)
     return render_template(
@@ -40,7 +43,10 @@ def view_restaurant_detail(name):
 @application.route("/list_foods/<res_name>/") # 식당 이름 기반 동적 라우팅
 def view_foods(res_name):
     data = DB.get_food_byname(str(res_name))
-    tot_count = len(data)
+    if data is None:
+        tot_count = 0
+    else:
+        tot_count = len(data)
     page_count = len(data)
     return render_template(
         "food_list.html",
@@ -50,14 +56,16 @@ def view_foods(res_name):
 @application.route("/list_reviews/<res_name>/") # 특정 식당의 리뷰 보기 
 def view_reviews(res_name):
     data = DB.get_review_byname(str(res_name))
-    print('뿡뿡', data)
-    tot_count = len(data)
+    print('리뷰 목록', data)
+    if data is None:
+        tot_count = 0
+    else:
+        tot_count = len(data)
     print('토탈', tot_count)
     return render_template(
         "review_list.html",
         datas=data,
         total=tot_count)
-    #get_avgrate_byname 평균 별점?? 
 
 @application.route("/register_restaurant") 
 def register_restaurant():
@@ -110,14 +118,13 @@ def submit_menu_post():
     data=request.form
     DB.insert_menu(data['menu_name'], data, image_path)
 
-    return render_template("index.html", data=data)
+    return redirect(url_for('view_restaurant_detail',name='반서울'))
 
 
 @application.route("/submit_review_post", methods=['POST']) 
 def submit_review_post():
     data=request.form
     DB.insert_review(data['res_name'], data)
-
-    return render_template("index.html", data=data)
+    return redirect(url_for('list_restaurants'))
 
 if __name__ == "__main__": application.run(host='0.0.0.0')
